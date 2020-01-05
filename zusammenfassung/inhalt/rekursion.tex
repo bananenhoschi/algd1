@@ -1,0 +1,109 @@
+\section*{Rekursion}
+\subsection*{DrawCricles}
+\begin{minted}[breaklines]{java}
+    private void drawCircles(Graphics g, int left, int top, int size) {
+        if (size >= 8) {
+            g.drawOval(left, top, size, size);
+            int s = size / 2;
+            drawCircles(g, left, top + s/2, s); //  links
+            drawCircles(g, left + s, top + s/2, s); //  rechts
+        }
+    }
+\end{minted}
+
+\subsection*{DrawSquares}
+
+\begin{minted}[breaklines]{java}
+    private void drawSquares(Graphics g, int left, int top, int size) {
+        left = left + margin;
+        top = top + margin;
+        size = size - 2 * margin;
+        if (size >= 4) {
+            g.drawRect(left, top, size, size);
+            int s = size / 2;
+            drawSquares(g, left, top, s); // oben links
+            drawSquares(g, left + s, top, s); // oben rechts
+            drawSquares(g, left + s, top + s, s); // unten rechts
+        }
+    }
+
+\end{minted}
+
+\subsection*{DrawLines}
+\begin{minted}[breaklines]{java}    
+    void drawFigure(Graphics g, int x, int y, int len, int level) {
+
+        if (level >= 0) {
+            len = len / 3;
+            drawFigure(g, x, y, len, level - 1);
+            drawFigure(g, x + len, y + len, len, level - 1);
+            drawFigure(g, x + 2 * (len), y, len, level - 1);
+        } else {
+            g.drawLine(x, y, x + len, y);
+        }
+    }
+\end{minted}
+
+\subsection*{DrawStars}
+\begin{minted}[breaklines]{java}    
+    private void drawFigure(int lineSize, int level) {
+    
+    	if(level > 0) {
+    		drawFigure(lineSize/3, level - 1);
+    		turnLeft(60);
+    		drawFigure(lineSize/3, level - 1);
+    		turnRight(120);
+    		drawFigure(lineSize/3, level - 1);
+    		turnLeft(60);
+    		drawFigure(lineSize/3, level - 1);
+    	} else {
+    		draw(lineSize/3);
+    		turnLeft(60);
+    		draw(lineSize/3);
+    		turnRight(120);
+    		draw(lineSize/3);
+    		turnleft(60);
+    		draw(lineSize/3);
+    	}
+    }
+\end{minted}
+
+
+\subsection*{DrawTriangles}
+
+\begin{minted}[breaklines]{java}    
+    private void drawRecTriangles(Point p1, Point p2, Point p3, int depth) {
+    
+    	if(depth > 0) {
+    		drawTriangle(p1, p2, p3);
+    		drawRecTriangles(p1, midPoint(p2, p3), midPoint(p3, p1), depth -1);
+    		drawRecTriangles(midPoint(p1, p2), midPoint(p2, p3), p3, depth -1);
+    		drawRecTriangles(midPoint(p1, p2), p2, midPoint(p3, p1), depth -1);
+    	}
+    }
+\end{minted}
+
+\subsection*{Fibonacci}
+
+\begin{minted}[breaklines]{java} 
+    public static long fiboRec(int n) {
+        if (n > 1) {
+            return fiboRec(n - 1) + fiboRec(n - 2);
+        }
+        return n;
+    }
+
+    public static long fiboIter(int n) {
+        if (n < 1) return n;
+        else {
+            int i = 1;
+            long f = 1, f1 = 0; 
+            while (i < n) { // Invariante: f = f(i) AND f1 = f(i-1)
+                f = f + f1;
+                f1 = f - f1;
+                i = i + 1;
+            }
+            return f;
+        }
+    }
+\end{minted}

@@ -1,0 +1,56 @@
+\pagebreak
+\section*{Sortialgorithmen}
+\subsection*{Bubble Sort}
+Sortiert von Hinten nach Vorne. Immer zwei Elemente werden verglichen. Wenn Element i-1 kleiner i dann wird getauscht. Vorne ist immer sortiert. $O(n^2)$
+\begin{minted}{java}
+void BubbleSort(int[] a) {
+  int n = a.length;
+  for (int i = 0; i < n - 1; i++) {
+    for (int j = n - 1; j > i; j--) { 
+      if (a[j] < a[j - 1]) {
+        int t = a[j - 1]; a[j - 1] = a[j]; a[j] = t; 
+      }
+    }
+  }
+}
+
+\end{minted}
+\subsection*{Insertion Sort}
+Vorne nach Hinten. Vorne ist aufsteigend sortiert. In jeder Iteration wird ein Element mehr genommen und geschaut wo es hingehört. $O(n^2)$
+Insertion Sort mit binary Search hat $O(n*\log{}n)$  
+\begin{minted}{java}
+void InsertionSort1(int[] a) { 
+  int n = a.length;
+  for (int i = 1; i < n; i++) {
+    for (int j = i; j > 0 && a[j - 1] > a[j]; j--) {
+       int t = a[j - 1]; a[j - 1] = a[j]; a[j] = t; 
+    }
+  } 
+}
+\end{minted}
+\subsection*{Selection Sort}
+Vorne nach Hinten. Vorne ist aufsteigend sortiert. Es wird immer das kleinste Element im Array gesucht. $O(n^2)$ 
+\begin{minted}{java}
+void SelectionSort(int[] a) {
+  int n = a.length;
+  for (int i = 0; i < n - 1; i++) {
+    int min = i;
+    for (int j = i + 1; j < n; j++) {
+      if (a[j] <= a[min]) min = j; 
+    }
+    int t = a[min]; a[min] = a[i]; a[i] = t; 
+  }
+}
+\end{minted}
+\subsection*{Selection Sort mit IndexOf}
+\begin{minted}{java}
+void sort(int[] data) {
+  int n = data.length;
+  for (int i = 0; i < n - 1; i++) {
+    int min = indexOfMin(data, i, n);
+    int t = data[min];
+    data[min] = data[i];
+    data[i] = t;
+  }
+}
+\end{minted}

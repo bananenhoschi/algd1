@@ -1,0 +1,85 @@
+\section*{Quick-Sort}
+
+$T(n) = 2*T(n/2) + a*n + b$
+
+\textbf{Best-Case:} $\mathcal{O}(n*log(n))$
+
+\textbf{Average-Case:} $\mathcal{O}(log(n))$
+
+\textbf{Worst-Case:} $\mathcal{O}(n^2)$
+
+Zusätzlicher Speicher von $\mathcal{O}(log(n))$
+
+\begin{minted}[breaklines]{java}
+
+	static void sort(int[] a, int beg, int end) {
+
+        if (beg < end) {
+            int x = a[(beg + end) / 2];
+            int i = beg;
+            int j = end;
+
+            while (i <= j) {
+                while (a[i] < x) i++;
+                while (a[j] > x) j--;
+                if (i <= j) {
+                    int t = a[i];
+                    a[i] = a[j];
+                    a[j] = t;
+                    i++;
+                    j--;
+
+                }
+            }
+            sort(a, beg, j);
+            sort(a, i, end);
+        }
+    }
+
+    private void sort(SortData a, int beg, int end) {
+
+        if (beg < end) {
+            int x = (beg + end) / 2;
+            int i = beg, j = end;
+            while (i <= j) {
+                while (a.less(i, x)) i++;
+                while (a.less(x, j)) j--;
+                if (i <= j) {
+                    a.swap(i, j);
+                    if (i == x) {
+                        x = j;
+                    } else if (j == x) {
+                        x = i;
+                    }
+
+                    ++i;
+                    --j;
+                }
+            }
+            sort(a, beg, j);
+            sort(a, i, end);
+        }
+    }
+    
+    
+   	void sort(int[]a, int beg, int end) {
+        if(beg >= end) return;
+        if(a[beg] > a[end]) swap(a, beg, end);
+        int p1 = a[beg], p2 = a[end];
+
+        int i = beg + 1, k = i, j=end;
+        while(k != j ){
+            if(a[k] <= p1){
+                swap(a,i,k); i++; k++;
+            }else if(a[k] <= p2){
+                k++;
+            }else{
+                j--; swap(a,k,j);
+            }
+        }
+        sort(a, beg, i-1);
+        sort(a, i, j-1);
+        sort(a, j, end);
+    }
+
+\end{minted}
