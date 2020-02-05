@@ -7,20 +7,6 @@ $\mathcal{O}(n*m)$
 
 \subsection*{Boyer-Moore}
 
-\begin{enumerate}
-	\item Suche jeweils das hinterste Zeichen im Text, welches nicht mit dem Muster übereinstimmt
-	\item Falls es kein solches gibt (j $<$ 0), wurde das Muster gefunden
-	\item Ansonsten (j $\geq$ 0) wird die Position von i anhand des Shift-Arrays verschoben
-\end{enumerate}
-
-\subsection*{Vorkommens-Heuristik}
-
-\begin{itemize}
-	\item Für alle Zeichen, die im Muster nicht enthalten sind -> Länge des Musters
-	\item Zeichen nur an letzter Position im Muster -> Länge des Musters
-	\item Sonst Muster-Länge - 1 - lastIndex(Muster, Zeichen)
-\end{itemize}
-
 \subsubsection*{Asymptotische Komplexität}
 n = Text-Länge, m = Muster-Länge
 

@@ -29,15 +29,12 @@ public final class Knapsack {
     private static void pack(int i) {
         cnt++;
         if (i < weight.length) {
-            sb.append(dataNeg[i]);
             pack(i + 1);
-            sb.delete(sb.length() - dataNeg[i].length(), sb.length());
             packItem(i);
             pack(i + 1);
             unpackItem(i);
         } else if (totWeight <= capacity && totValue > maxValue) {
             maxValue = totValue;
-            //System.out.println(".".repeat(cnt) + "new max value " + maxValue + " with weight " + totWeight);
         }
 
         if (sb.length() ==  8) System.out.println(sb);

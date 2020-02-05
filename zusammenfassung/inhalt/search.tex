@@ -8,6 +8,7 @@ int search(int[] arr, int x) {
     return -1; 
 }
 \end{minted}
+
 \subsection*{Sequenzielle Suche mit Wächter}
 \begin{minted}{java}
 boolean search(int[] data, int value){
@@ -20,51 +21,18 @@ boolean search(int[] data, int value){
     return (i < n - 1) || (x == arr[n - 1]);
 }
 \end{minted}
+
 \subsection*{Binäre Suche}
 \begin{minted}{java}
-int binSearch(int[] data, int value){
-  int l = -1, h = data.length + 1;
-  while(l+1 != h){
-    int m = (l + h) \ 2;
-    if(data[m] < value)
-      l = m;
-    else if(data[m] > value)
-      h = m;
-    else
-      return m;
-  }
-  return -1;
-}
-\end{minted}
-\columnbreak
-\subsection*{Binäre Suche Speziell}
-\resizebox{\columnwidth}{!}{%
-\includegraphics[width=10cm]{images/binsuche}}
-\begin{minted}{java}
-int binSearch1(int[] data, int key) {
-  int l = 0, h = data.length;
-  while (l != h) {
-    int m = (l + h) / 2;
-    if(data[m]<=key)l=m+1;
-    else h=m;
-  }
-  return l - 1; 
-}
-\end{minted}
-\subsection*{Binäre Suche für Objekte}
-\begin{minted}{java}
-<T extends Comparable<? super T>> int binSearch(T[] data, 
-T value) {
-	int l = -1, h = data.length;
-	while (l + 1 != h) {
-		int m = (l + h) >>> 1;
-		int c = data[m].compareTo(value); 
-		if (c < 0) l = m;
-		else if (c > 0) h = m;
-		else return m;
-	}
-	return NOT_FOUND; 
-}
+    int binSearch(int[] data, int value) {
+        int l = -1, h = data.length;
+        while (l + 1 != h) {
+            int m = (l + h) >>> 1;
+            if (data[m] < value) l = m;
+            else h = m;
+        }
+        return h;
+    }
 \end{minted}
 \subsection*{Max Sub Array}
 \begin{minted}{java}

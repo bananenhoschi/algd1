@@ -26,7 +26,6 @@ public class DameAlgo {
 
         }
         return solved;
-
     }
 
 }

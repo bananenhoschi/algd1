@@ -83,3 +83,31 @@ Zusätzlicher Speicher von $\mathcal{O}(log(n))$
     }
 
 \end{minted}
+\subsection*{Quicksort Cutoff}
+\begin{minted}[breaklines]{java}
+private void quicksort(SortData data, int l, int h) { 
+	if (h - l > CUT_OFF) {
+		int i = l, j = h, m = (l + h) / 2; 
+		while (i <= j) {
+			while (data.less(i, m)) i++; 
+			while (data.less(m, j)) j--; 
+			if (i <= j) {
+				data.swap(i, j);
+			if (i == m) m = j;
+				else if (j == m) m = i; i++; j--;
+			}
+		} 
+		quicksort(data, l, j);
+		quicksort(data, i, h);
+	} else
+		insertionSort(data, l, h);
+	}
+}
+private void insertionSort(SortData data, int beg, int end) {
+	for (int i = beg + 1; i <= end; i++) {
+		int j = i;
+		while (j > beg && data.less(j, j - 1)) { data.swap(j, j - 1); j--; } }
+}
+	
+\end{minted}
+\

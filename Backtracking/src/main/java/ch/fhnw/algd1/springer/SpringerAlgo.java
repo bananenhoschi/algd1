@@ -24,7 +24,6 @@ public class SpringerAlgo {
 
     public boolean move(int x, int y, int step) {
         visit(x, y, step);
-        System.out.println("x:" + x + "; y:" + y);
         if (step == size * size) return true;
 
         List<Move> nextMoves = calcNextMoves(x, y);
