@@ -6,3 +6,5 @@ build
 out
 target
 .idea
+.DS_Store
+gradle
